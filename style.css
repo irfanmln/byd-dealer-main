@@ -143,18 +143,24 @@ a {
   background-position: center center;
 }
 
-@media (max-width: 768px) {
-  .slide {
-    background-position: center top;
-  }
-}
-
+/* Desktop hero images */
 .slide-hero1 { background-image: url('assets/1-new-atto1-desktop-131025.png'); }
 .slide-hero2 { background-image: url('assets/2-new-seal-desktop-1410.png'); }
 .slide-hero3 { background-image: url('assets/3-new-atto3-2025-desktop.png'); }
 .slide-hero4 { background-image: url('assets/4-Desktop-Banner-Dolphin_7.png'); }
 .slide-hero5 { background-image: url('assets/5-new-sealion7-1410-desktop.png'); }
 .slide-hero6 { background-image: url('assets/6-dealer-desktop.png'); }
+
+/* Mobile hero images — portrait versions */
+@media (max-width: 768px) {
+  .slide { background-position: center center; }
+  .slide-hero1 { background-image: url('assets/mobile-atto-1.png'); }
+  .slide-hero2 { background-image: url('assets/mobile-seal.png'); }
+  .slide-hero3 { background-image: url('assets/mobile-atto-3.png'); }
+  .slide-hero4 { background-image: url('assets/mobile-dolphin.png'); }
+  .slide-hero5 { background-image: url('assets/mobile-seal-2.png'); }
+  .slide-hero6 { background-image: url('assets/mobile-find-us.png'); }
+}
 
 /* Decorative glow overlay on slides */
 .slide::before {
