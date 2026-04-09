@@ -85,6 +85,7 @@ a {
 /* ===== SCROLL CONTAINER ===== */
 .scroll-container {
   height: 100vh;
+  height: 100dvh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -103,6 +104,7 @@ a {
 .section {
   scroll-snap-align: start;
   height: 100vh;
+  height: 100dvh; /* dynamic viewport height — fixes mobile browser bar issue */
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -190,6 +192,14 @@ a {
   align-items: center;
   gap: 20px;
   padding: 0 32px;
+}
+
+@media (max-width: 768px) {
+  .slide6-overlay {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(60%);
+  }
 }
 
 .slide6-text {
