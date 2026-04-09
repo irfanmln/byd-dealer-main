@@ -162,6 +162,35 @@ a {
   text-align: center;
 }
 
+/* Slide 6 — dealer banner */
+.slide6-overlay {
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 32px;
+}
+
+.slide6-text {
+  font-size: clamp(12px, 1.4vw, 16px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
+.slide6-btn {
+  min-width: 200px;
+  text-align: center;
+}
+
 .slide-label {
   font-size: clamp(48px, 7vw, 96px);
   font-weight: 900;
@@ -471,19 +500,6 @@ a {
     padding: 80px 20px 50px;
   }
 
-  /* Fix gambar terpotong di mobile — gunakan contain agar full terlihat */
-  .car-bg {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center bottom;
-  }
-
-  /* Hero slider juga pakai contain di mobile */
-  .slide {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
 
   /* Buttons stack vertically on mobile */
   .car-buttons {
