@@ -124,34 +124,26 @@ a {
 .slider-track {
   display: flex;
   height: 100%;
-  width: 400%; /* 4 slides */
+  width: 600%; /* 6 slides */
   transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
   will-change: transform;
 }
 
 .slide {
-  width: 25%; /* 100% / 4 slides */
+  width: calc(100% / 6); /* 16.666% per slide */
   height: 100%;
   position: relative;
   flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
 }
 
-/* Slide backgrounds — gradient placeholders */
-.slide-atto1 {
-  background: linear-gradient(135deg, #0a0a1a 0%, #0d1b3e 40%, #162b5e 70%, #0a1225 100%);
-}
-
-.slide-seal {
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 40%, #16213e 70%, #0f3460 100%);
-}
-
-.slide-dolphin {
-  background: linear-gradient(135deg, #050e15 0%, #0a2535 40%, #0e3d55 70%, #0a1e2e 100%);
-}
-
-.slide-atto3 {
-  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 40%, #222222 70%, #111111 100%);
-}
+.slide-hero1 { background-image: url('assets/1-new-atto1-desktop-131025.png'); }
+.slide-hero2 { background-image: url('assets/2-new-seal-desktop-1410.png'); }
+.slide-hero3 { background-image: url('assets/3-new-atto3-2025-desktop.png'); }
+.slide-hero4 { background-image: url('assets/4-Desktop-Banner-Dolphin_7.png'); }
+.slide-hero5 { background-image: url('assets/5-new-sealion7-1410-desktop.png'); }
+.slide-hero6 { background-image: url('assets/6-dealer-desktop.png'); }
 
 /* Decorative glow overlay on slides */
 .slide::before {
@@ -203,23 +195,33 @@ a {
 
 /* Background gradients per car */
 .seal-section .car-bg {
-  background: linear-gradient(160deg, #0a0e18 0%, #131c30 35%, #1b2d4f 65%, #0c1520 100%);
+    background-image: url('assets/section-seal.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .atto3-section .car-bg {
-  background: linear-gradient(160deg, #0a0a0a 0%, #141414 35%, #1e1e1e 65%, #0d0d0d 100%);
+    background-image: url('assets/section-atto3-c.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .dolphin-section .car-bg {
-  background: linear-gradient(160deg, #040d12 0%, #082030 35%, #0c3244 65%, #061520 100%);
+    background-image: url('assets/section-dolphin-2.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .m6-section .car-bg {
-  background: linear-gradient(160deg, #0c0f12 0%, #16202a 35%, #1f2e3b 65%, #0e1720 100%);
+    background-image: url('assets/section-m6.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .atto1-section .car-bg {
-  background: linear-gradient(160deg, #060814 0%, #0c1230 35%, #121e50 65%, #080c22 100%);
+    background-image: url('assets/section-kv-atto1-pc.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .car-overlay {
@@ -306,10 +308,159 @@ a {
   border-color: #fff;
 }
 
+/* ===== HAMBURGER BUTTON ===== */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #fff;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-inner {
+  padding: 24px 28px 40px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #111;
+  padding: 4px 8px;
+  margin-bottom: 16px;
+}
+
+.mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-menu-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 0;
+}
+
+.mobile-menu-list li a {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #111;
+  text-decoration: none;
+}
+
+.mobile-menu-list .plus {
+  font-size: 20px;
+  color: #111;
+  font-weight: 300;
+}
+
+/* ===== FOOTER ===== */
+.footer-section {
+  scroll-snap-align: start;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-ikuti {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+}
+
+.footer-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-icons a {
+  color: rgba(255,255,255,0.75);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.footer-icons a:hover {
+  color: #fff;
+}
+
+.footer-copy p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.5px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: block;
   }
 
   .navbar-inner {
@@ -317,15 +468,27 @@ a {
   }
 
   .car-overlay {
-    padding: 80px 20px 40px;
+    padding: 80px 20px 50px;
   }
 
+  /* Buttons stack vertically on mobile */
   .car-buttons {
-    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0 24px;
   }
 
   .btn-outline {
-    padding: 11px 20px;
-    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .footer-social {
+    flex-direction: column;
+    gap: 16px;
   }
 }

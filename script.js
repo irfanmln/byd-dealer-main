@@ -47,6 +47,31 @@
     }, { passive: true });
   }
 
+  /* ===== HAMBURGER MENU ===== */
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuCloseBtn = document.getElementById('menuCloseBtn');
+
+  if (hamburgerBtn && mobileMenu && menuCloseBtn) {
+    hamburgerBtn.addEventListener('click', function () {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    menuCloseBtn.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    // Close when tapping a menu link
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
   /* ===== SCROLL CONTAINER: pause auto-slide when user scrolls away from hero ===== */
   const scrollContainer = document.querySelector('.scroll-container');
   if (scrollContainer) {
