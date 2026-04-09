@@ -2,6 +2,7 @@
   'use strict';
 
   /* ===== HERO AUTO-SLIDER ===== */
+  const wrapper = document.querySelector('.slider-wrapper');
   const track = document.querySelector('.slider-track');
   const slides = document.querySelectorAll('.slide');
   const totalSlides = slides.length;
@@ -10,14 +11,11 @@
 
   function goTo(index) {
     current = (index + totalSlides) % totalSlides;
-    // Each slide is 100% / totalSlides wide; track width = totalSlides * 100%
-    // So moving by (100 / totalSlides) % per slide = 25% per slide
     track.style.transform = `translateX(-${current * (100 / totalSlides)}%)`;
   }
 
-  function nextSlide() {
-    goTo(current + 1);
-  }
+  function prevSlide() { goTo(current - 1); }
+  function nextSlide() { goTo(current + 1); }
 
   function startAuto() {
     stopAuto();
@@ -25,26 +23,83 @@
   }
 
   function stopAuto() {
-    if (autoTimer) {
-      clearInterval(autoTimer);
-      autoTimer = null;
-    }
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
   }
 
-  // Init
+  function resetAuto() {
+    stopAuto();
+    startAuto();
+  }
+
   if (track && slides.length > 0) {
     goTo(0);
     startAuto();
   }
 
-  /* ===== PREVENT HERO SECTION FROM PROPAGATING CLICKS/SCROLL TO SLIDER ===== */
-  // The slider-wrapper already has pointer-events: none in CSS.
-  // We block any touch/wheel on the hero section that would change the slide manually.
-  const heroSection = document.querySelector('.hero-section');
-  if (heroSection) {
-    heroSection.addEventListener('touchstart', function (e) {
-      // Allow default scroll-snap behavior; don't interfere
+  /* ===== TOUCH & MOUSE DRAG SUPPORT ===== */
+  if (wrapper) {
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let isHorizontal = null; // determined after first move
+    const THRESHOLD = 50;
+
+    // --- TOUCH ---
+    wrapper.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isDragging = true;
+      isHorizontal = null;
+      stopAuto();
     }, { passive: true });
+
+    wrapper.addEventListener('touchmove', function (e) {
+      if (!isDragging) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      // Determine direction on first move
+      if (isHorizontal === null) {
+        isHorizontal = Math.abs(dx) > Math.abs(dy);
+      }
+      // If horizontal swipe — prevent vertical scroll takeover
+      if (isHorizontal) e.preventDefault();
+    }, { passive: false });
+
+    wrapper.addEventListener('touchend', function (e) {
+      if (!isDragging) return;
+      const dx = startX - e.changedTouches[0].clientX;
+      if (isHorizontal && Math.abs(dx) > THRESHOLD) {
+        dx > 0 ? nextSlide() : prevSlide();
+      }
+      isDragging = false;
+      isHorizontal = null;
+      resetAuto();
+    }, { passive: true });
+
+    // --- MOUSE DRAG ---
+    wrapper.addEventListener('mousedown', function (e) {
+      startX = e.clientX;
+      isDragging = true;
+      wrapper.classList.add('dragging');
+      stopAuto();
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      // Optional: live drag visual — skip for simplicity
+    });
+
+    window.addEventListener('mouseup', function (e) {
+      if (!isDragging) return;
+      const dx = startX - e.clientX;
+      if (Math.abs(dx) > THRESHOLD) {
+        dx > 0 ? nextSlide() : prevSlide();
+      }
+      isDragging = false;
+      wrapper.classList.remove('dragging');
+      resetAuto();
+    });
   }
 
   /* ===== HAMBURGER MENU ===== */
@@ -63,7 +118,6 @@
       document.body.style.overflow = '';
     });
 
-    // Close when tapping a menu link
     mobileMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         mobileMenu.classList.remove('open');
@@ -72,18 +126,15 @@
     });
   }
 
-  /* ===== SCROLL CONTAINER: pause auto-slide when user scrolls away from hero ===== */
+  /* ===== SCROLL: pause auto-slide when not on hero ===== */
   const scrollContainer = document.querySelector('.scroll-container');
   if (scrollContainer) {
     scrollContainer.addEventListener('scroll', function () {
       const scrollTop = scrollContainer.scrollTop;
       const heroHeight = window.innerHeight;
-
       if (scrollTop < heroHeight * 0.5) {
-        // User is on hero section — ensure auto-slide is running
         if (!autoTimer) startAuto();
       } else {
-        // User scrolled away — pause auto-slide to save resources
         stopAuto();
       }
     }, { passive: true });
