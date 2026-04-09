@@ -471,6 +471,20 @@ a {
     padding: 80px 20px 50px;
   }
 
+  /* Fix gambar terpotong di mobile — gunakan contain agar full terlihat */
+  .car-bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+  }
+
+  /* Hero slider juga pakai contain di mobile */
+  .slide {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
   /* Buttons stack vertically on mobile */
   .car-buttons {
     flex-direction: column;
