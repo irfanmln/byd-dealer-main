@@ -268,6 +268,12 @@ a {
     background-position: center;
 }
 
+@media (max-width: 768px) {
+  .dolphin-section .car-bg {
+    background-image: url('assets/section-dolphin-mobile.png');
+  }
+}
+
 .m6-section .car-bg {
     background-image: url('assets/section-m6.png');
     background-size: cover;
