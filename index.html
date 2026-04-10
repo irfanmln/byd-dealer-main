@@ -13,7 +13,39 @@
     <div class="navbar-inner">
       <a class="nav-logo" href="#">BYD</a>
       <ul class="nav-links">
-        <li><a href="#">MODEL</a></li>
+        <li class="has-dropdown">
+          <a href="#">MODEL</a>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+              <div class="model-grid">
+                <a href="#" class="model-item">
+                  <span class="model-name">BYD SEAL</span>
+                  <img src="assets/seal-menu.webp" alt="BYD SEAL">
+                </a>
+                <a href="#" class="model-item">
+                  <span class="model-name">BYD ATTO 3</span>
+                  <img src="assets/atto3-menu.webp" alt="BYD ATTO 3">
+                </a>
+                <a href="#" class="model-item">
+                  <span class="model-name">BYD DOLPHIN</span>
+                  <img src="assets/dolphin-menu.webp" alt="BYD DOLPHIN">
+                </a>
+                <a href="#" class="model-item">
+                  <span class="model-name">BYD M6</span>
+                  <img src="assets/m6-menu.webp" alt="BYD M6">
+                </a>
+                <a href="#" class="model-item">
+                  <span class="model-name">BYD SEALION 7</span>
+                  <img src="assets/sealion7-menu-3.webp" alt="BYD SEALION 7">
+                </a>
+                <a href="#" class="model-item">
+                  <span class="model-name">BYD ATTO 1</span>
+                  <img src="assets/atto1-menu.webp" alt="BYD ATTO 1">
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
         <li><a href="#">AFTERSALES</a></li>
         <li><a href="#">TENTANG BYD</a></li>
         <li><a href="#">HUBUNGI</a></li>
@@ -31,7 +63,20 @@
     <div class="mobile-menu-inner">
       <button class="mobile-menu-close" id="menuCloseBtn">&#10005;</button>
       <ul class="mobile-menu-list">
-        <li class="has-sub"><a href="#">MODEL</a><span class="plus">+</span></li>
+        <li class="has-sub" id="mobileModelItem">
+          <div class="mobile-menu-row">
+            <a href="#">MODEL</a>
+            <span class="plus" id="modelToggle">+</span>
+          </div>
+          <ul class="mobile-submenu" id="mobileModelSub">
+            <li><img src="assets/seal-menu.webp" alt="BYD SEAL"><a href="#">BYD SEAL</a></li>
+            <li><img src="assets/atto3-menu.webp" alt="BYD ATTO 3"><a href="#">BYD ATTO 3</a></li>
+            <li><img src="assets/dolphin-menu.webp" alt="BYD DOLPHIN"><a href="#">BYD DOLPHIN</a></li>
+            <li><img src="assets/m6-menu.webp" alt="BYD M6"><a href="#">BYD M6</a></li>
+            <li><img src="assets/sealion7-menu-3.webp" alt="BYD SEALION 7"><a href="#">BYD SEALION 7</a></li>
+            <li><img src="assets/atto1-menu.webp" alt="BYD ATTO 1"><a href="#">BYD ATTO 1</a></li>
+          </ul>
+        </li>
         <li class="has-sub"><a href="#">AFTERSALES</a><span class="plus">+</span></li>
         <li><a href="#">TENTANG BYD</a></li>
         <li><a href="#">HUBUNGI</a></li>

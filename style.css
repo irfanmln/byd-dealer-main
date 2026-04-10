@@ -54,6 +54,67 @@ a {
   gap: 36px;
 }
 
+/* ===== DESKTOP DROPDOWN MODEL ===== */
+.has-dropdown {
+  position: static;
+}
+
+.nav-dropdown {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 99;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.has-dropdown:hover .nav-dropdown {
+  max-height: 400px;
+}
+
+.nav-dropdown-inner {
+  padding: 40px 80px;
+}
+
+.model-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.model-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 20%;
+  padding: 0 24px 24px 0;
+  text-decoration: none;
+  color: #111;
+  transition: opacity 0.2s;
+}
+
+.model-item:hover {
+  opacity: 0.7;
+}
+
+.model-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.model-item img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
 .nav-links a {
   font-size: 12px;
   font-weight: 600;
@@ -434,18 +495,63 @@ a {
 
 .mobile-menu-list li {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   border-bottom: 1px solid #e5e5e5;
-  padding: 20px 0;
 }
 
-.mobile-menu-list li a {
+.mobile-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.mobile-menu-list > li > a,
+.mobile-menu-list > li > .mobile-menu-row > a {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.5px;
   color: #111;
   text-decoration: none;
+}
+
+/* MODEL submenu */
+.mobile-submenu {
+  list-style: none;
+  padding: 0 0 12px 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.mobile-submenu.open {
+  max-height: 600px;
+}
+
+.mobile-submenu li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: none;
+  flex-direction: row;
+}
+
+.mobile-submenu li img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.mobile-submenu li a {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: 0.3px;
 }
 
 .mobile-menu-list .plus {

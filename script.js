@@ -124,6 +124,17 @@
         document.body.style.overflow = '';
       });
     });
+
+    // MODEL submenu toggle
+    const modelToggle = document.getElementById('modelToggle');
+    const modelSub = document.getElementById('mobileModelSub');
+    if (modelToggle && modelSub) {
+      modelToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = modelSub.classList.toggle('open');
+        modelToggle.textContent = isOpen ? '−' : '+';
+      });
+    }
   }
 
   /* ===== SCROLL: pause auto-slide when not on hero ===== */
