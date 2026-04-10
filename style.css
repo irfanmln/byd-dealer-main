@@ -499,6 +499,18 @@ a {
   border-bottom: 1px solid #e5e5e5;
 }
 
+/* Item biasa (tanpa submenu) */
+.mobile-menu-list > li > a {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #111;
+  text-decoration: none;
+  padding: 20px 0;
+  display: block;
+}
+
+/* Item dengan submenu (MODEL) */
 .mobile-menu-row {
   display: flex;
   align-items: center;
@@ -507,8 +519,7 @@ a {
   width: 100%;
 }
 
-.mobile-menu-list > li > a,
-.mobile-menu-list > li > .mobile-menu-row > a {
+.mobile-menu-row a {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.5px;
